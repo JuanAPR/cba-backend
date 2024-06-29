@@ -1,6 +1,8 @@
 package com.cbaservice.cba_backend.entity.auth;
 
+import com.cbaservice.cba_backend.entity.customer.Customer;
 import com.cbaservice.cba_backend.helper.Role;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -25,7 +27,7 @@ public class Agent implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private int id;
     @Column(name = "name", nullable = false)
     @NotNull(message = "name cannot be null")
     @NotEmpty(message = "name cannot be empty")
@@ -38,6 +40,9 @@ public class Agent implements UserDetails {
     @NotNull(message = "password cannot be null")
     @NotEmpty(message = "password cannot be empty")
     private String password;
+    @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Customer> customers;
 
     @Enumerated
     private Role role;
