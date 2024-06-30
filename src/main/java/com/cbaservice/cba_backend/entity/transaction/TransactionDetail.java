@@ -26,7 +26,7 @@ public class TransactionDetail {
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "transaction_code", nullable = false)
-    private Integer transactionCode;
+    private String transactionCode;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     @JsonBackReference

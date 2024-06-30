@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class Product {
     @JsonBackReference
     private Category category;
     @Column(name = "price", nullable = false)
-    private float price;
+    private BigDecimal price;
     @Column(name = "image")
     private String image;
     @Column(name = "tanggal_buat")

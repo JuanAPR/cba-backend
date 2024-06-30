@@ -22,7 +22,7 @@ public class TransactionFinal {
     @Column(name = "id", nullable = false)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "transc_detail_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "transaction_detail_id", referencedColumnName = "id", nullable = false)
     @JsonBackReference
     private TransactionDetail transactionDetail;
     @Column(name = "total_pay", nullable = false)

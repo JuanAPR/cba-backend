@@ -19,6 +19,9 @@ public class CustomerOutputDTO {
     private String ktp;
     private String tempatLahir;
     private LocalDate tanggalLahir;
+    private Integer age;
     private String passportID;
     private String nationality;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
 }
