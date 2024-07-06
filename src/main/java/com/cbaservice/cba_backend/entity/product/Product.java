@@ -2,6 +2,7 @@ package com.cbaservice.cba_backend.entity.product;
 
 import com.cbaservice.cba_backend.entity.category.Category;
 import com.cbaservice.cba_backend.entity.transaction.TransactionDetail;
+import com.cbaservice.cba_backend.payload.product.ProductOutputDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -42,4 +43,21 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<TransactionDetail> transactionDetails;
+
+    public ProductOutputDTO entityToDto(){
+        ProductOutputDTO productOutputDTO = new ProductOutputDTO();
+        Category categories = new Category();
+        categories.setId(category.getId());
+        categories.setName(category.getName());
+
+        productOutputDTO.setId(id);
+        productOutputDTO.setName(name);
+        productOutputDTO.setPrice(price);
+        productOutputDTO.setImage(image);
+        productOutputDTO.setTanggalBuat(LocalDate.now());
+        productOutputDTO.setTanggalUpdate(updatedAt);
+        productOutputDTO.setCategoryId(categories.getId());
+        productOutputDTO.setCategoryName(categories.getName());
+        return productOutputDTO;
+    }
 }

@@ -1,12 +1,14 @@
 package com.cbaservice.cba_backend.entity.category;
 
 import com.cbaservice.cba_backend.entity.product.Product;
+import com.cbaservice.cba_backend.payload.category.CategoryOutputDTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -31,4 +33,14 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Product> products;
+
+    public CategoryOutputDTO entityToDto(){
+        CategoryOutputDTO category = new CategoryOutputDTO();
+
+        category.setId(id);
+        category.setName(name);
+        category.setTanggalBuat(LocalDate.now());
+        category.setTanggalUpdate(null);
+        return category;
+    }
 }

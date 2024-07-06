@@ -15,7 +15,7 @@ import java.util.List;
 public class CustomerController {
     private final CustomerService service;
 
-    @GetMapping("/all-customer")
+    @GetMapping("/all")
     public ResponseEntity<List<CustomerOutputDTO>> getAllCustomer(){
         var entity = service.findAll();
         return new ResponseEntity<>(entity, HttpStatus.OK);
